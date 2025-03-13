@@ -1,0 +1,63 @@
+{% extends "layouts/base.html" %}
+{% load static %} 
+{% block title %} Link page 
+{% endblock title %}
+{% block content %}
+
+<style>
+    a:visited {
+        color: blue;
+    }
+    a:hover {
+        color: green;    
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    a:active {
+        color: red;
+    }
+    h2 {
+        margin: 0;
+        margin-bottom: -20px;
+    }
+</style>
+<a href="http://myqu.qu.edu.sa" target = "_blank">
+    <h2 style=
+    "color: rgb(255, 17, 0);
+    background: rgb(0,245,0);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px;
+    margin-top: 20px;
+
+    ">Go to QU website (Open in new tab)</h2>    
+</a>
+
+<hr>
+
+<a href="http://myqu.qu.edu.sa" > 
+    <h2 style=
+    
+    "color: rgb(232, 244, 64);
+    background: rgb(140, 145, 140);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px;
+    ">Go to QU website (Open in the same page/tab)</h2> 
+</a>
+<hr>
+
+<a href="http://myqu.qu.edu.sa" >
+    <h2 style=
+    "color: rgb(255, 255, 255);
+    background: rgb(10, 12, 10);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px;
+    ">Go to QU website (Open in the same page/tab)</h2> 
+</a>
+{% endblock content %}
+

@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+{% load static %} 
+{% block title %} links HTML5 Page 
+{% endblock title %}
+{% block content %}
+
+
+<a href="{% url 'books.links'%}">
+    <h2 style="color: rgb(0, 0, 0);">Links html file</h2>
+</a>
+
+<a href="{% url 'books.formatting'%}">
+    <h2 style="color: rgb(0, 0, 0);">Formatting html file</h2>
+</a>
+
+<a href="{% url 'books.listing'%}">
+    <h2 style="color: rgb(0, 0, 0);">Listing html file</h2>
+</a>
+
+
+<a href="{% url 'books.tables'%}">
+    <h2 style="color: rgb(0, 0, 0);">Tables html file</h2>
+</a>
+
+
+<a href="{% url 'books.search'%}">
+    <h2 style="color: rgb(0, 0, 0);">Search html file</h2>
+</a>
+
+
+{% endblock content %}
