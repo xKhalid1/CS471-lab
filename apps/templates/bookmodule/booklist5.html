@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+{% load static %} 
+{% block title %} links HTML5 Page 
+{% endblock title %}
+{% block content %}
+
+
+<h2>list books</h2>
+
+<p>Number of Books: {{ books.booknum_count }}</p>
+<p>Total Price of All Books: {{ books.total_price }}</p>
+<p>Average Price: {{ books.average_price }}</p>
+<p>Maximum Price: {{ books.max_price }}</p>
+<p>Minimum Price: {{ books.min_price }}</p>
+
+<hr>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+{% load static %} 
+{% block title %} links HTML5 Page 
+{% endblock title %}
+{% block content %}
+
+
+<h2>edit a book</h2>
+
+<form class="deletebook" method="post">
+    {% csrf_token %}
+    <label>Title:</label> 
+    <input type="text" name="title" placeholder="enter a Title" /> 
+    
+    <label>Author:</label> 
+    <input type="text" name="author" placeholder="enter a Author" />
+
+    <label>Edition:</label> 
+    <input type="int" name="edition" placeholder="enter a Edition" />
+
+    <label>Price:</label> 
+    <input type="float" name="price" placeholder="enter a Price" />
+    <br />
+    <button type="submit">Submit</button>
+</form>
+<a href="{% url 'books.listbooks' %}">return</a>
+
+
+{% endblock content %}
