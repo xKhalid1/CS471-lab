@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+{% load static %} 
+{% block title %} links HTML5 Page 
+{% endblock title %}
+{% block content %}
+
+
+<h2>number of students in each departement</h2>
+
+    <hr>
+
+    {% for item in books %}
+  <tr>
+    <td>{{ item.departement__name }}</td> 
+    <td>{{ item.student9_count }}</td>
+
+    <hr>
+  </tr>
+
+{% endfor %}
+
+{% endblock content %}

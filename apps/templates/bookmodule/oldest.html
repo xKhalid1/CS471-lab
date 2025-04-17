@@ -1,0 +1,38 @@
+{% extends "layouts/base.html" %}
+{% load static %} 
+{% block title %} links HTML5 Page 
+{% endblock title %}
+{% block content %}
+
+<style>
+
+    table,th,td,tr{
+        border: 1px solid;
+        text-align: center;
+        border-collapse: collapse;
+        padding-top: 5px;
+    }
+</style>
+
+<h2>oldest student by ID for each departement</h2>
+
+    <hr>
+    <table>
+        <tr>
+            <td><strong>ID</td>
+            <td><strong>Name</td>
+            <td><Strong>Departement</td>
+        </tr>
+    {% for item in books %}
+
+        <tr>
+            <td>{{item.student_id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.departement__name}}</td>
+        </tr>
+    {% endfor %}
+
+    </table>
+
+
+{% endblock content %}

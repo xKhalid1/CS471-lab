@@ -21,3 +21,24 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.age}) - {self.address.city}"
+    
+
+class Card(models.Model):
+    card_number = models.IntegerField()
+
+
+class Departement(models.Model):
+    name = models.CharField(max_length=50)
+
+class Course(models.Model):
+    title = models.CharField(max_length=20)
+    code = models.IntegerField()
+
+
+class Student9(models.Model):
+    name = models.CharField(max_length=50)
+    card = models.OneToOneField(Card, on_delete=models.PROTECT)
+    departement = models.ForeignKey(Departement, on_delete=models.CASCADE)
+    Courses = models.ManyToManyField(Course)
+
+

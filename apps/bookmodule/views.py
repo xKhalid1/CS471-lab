@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Book
-from .models import Student
-from .models import Address
+from .models import Book, Student, Departement, Card, Address, Course, Student9
 from django.db.models import Q
 from django.db.models import Count, Min, Max, Sum, Avg
 
@@ -125,17 +123,8 @@ def addbook(request):
         Book.objects.create(title = title, author = author, price = price, edition = edition)
     return render(request, 'bookmodule/addbook.html')
 
-'''
-def editbook(request, id):
-    mybook = get_object_or_404(Book, id=id)
-    if request.method == "POST":
-        title = request.POST['title']
-        author = request.POST['author']
-        price = request.POST['price']
-        edition = request.POST['edition']
-        Book.objects.update(title = title, author = author, price = price, edition = edition)
-    return render(request, 'bookmodule/editbook.html', {'books': mybook})
-'''
+
+
 def editbook(request, id):
     mybook = get_object_or_404(Book, id=id)
     if request.method == "POST":
@@ -144,6 +133,7 @@ def editbook(request, id):
         mybook.price = request.POST['price']
         mybook.edition = request.POST['edition']
         mybook.save()
+        return redirect('book')
     return render(request, 'bookmodule/editbook.html', {'books': mybook})
 
 def deletebook(request, id):
@@ -151,3 +141,25 @@ def deletebook(request, id):
     mybook.delete()
     return redirect('books.listbooks')
     #return render(request, 'bookmodule/listbooks.html')
+
+
+
+def lab9task1(request):
+    mybook = Student9.objects.values('departement__name').annotate(student9_count=Count('id')).order_by('-student9_count')
+
+    return render(request, 'bookmodule/depart.html', {'books': mybook})
+
+
+def lab9task2(request):
+    mybook = Student9.objects.values('Courses__title').annotate(student9_count=Count('id')).order_by('-student9_count')
+    
+    return render(request, 'bookmodule/courses.html', {'book': mybook})
+
+
+def lab9task3(request):
+    mybook = Student9.objects.values('departement__name').annotate(student_id=Min('id'))
+    return render(request, 'bookmodule/oldest.html', {'books': mybook})
+
+def lab9task4(request):
+
+    return render(request, 'bookmodule/editbook.html', {'books': mybook})
