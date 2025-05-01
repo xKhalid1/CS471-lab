@@ -12,3 +12,6 @@ How to:
 5. Start the server > python manage.py runserver
 
 
+Link for Sqlite3 Database
+https://sqlitebrowser.org/dl/
+
