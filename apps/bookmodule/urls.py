@@ -20,10 +20,17 @@ path('lab8/task3', views.task3, name="books.task3"),
 path('lab8/task4', views.task4, name="books.task4"),
 path('lab8/task5', views.task5, name="books.task5"),
 path('lab8/task7', views.task7, name="books.task7"),
+
 path('lab10_part1/listbooks', views.listbooks, name="books.listbooks"),
 path('lab10_part1/addbook', views.addbook, name="books.addbook"),
 path('lab10_part1/editbook/<id>', views.editbook, name="books.editbook"),
 path('lab10_part1/deletebook/<id>', views.deletebook, name="books.deletebook"),
+
+path('lab10_part2/listbooks2', views.listbooks2, name="books.listbooks2"),
+path('lab10_part2/addbook2', views.addbook2, name="books.addbook2"),
+path('lab10_part2/editbook2/<id>', views.editbook2, name="books.editbook2"),
+path('lab10_part2/deletebook2/<id>', views.deletebook2, name="books.deletebook2"),
+
 path('lab9/task1', views.lab9task1, name="books.lab9task1"),
 path('lab9/task2', views.lab9task2, name="books.lab9task2"),
 path('lab9/task3', views.lab9task3, name="books.lab9task3"),

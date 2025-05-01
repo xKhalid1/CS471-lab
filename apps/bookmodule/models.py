@@ -40,5 +40,3 @@ class Student9(models.Model):
     card = models.OneToOneField(Card, on_delete=models.PROTECT)
     departement = models.ForeignKey(Departement, on_delete=models.CASCADE)
     Courses = models.ManyToManyField(Course)
-
-

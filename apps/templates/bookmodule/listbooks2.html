@@ -1,0 +1,57 @@
+{% extends "layouts/base.html" %}
+{% load static %} 
+{% block title %} links HTML5 Page 
+{% endblock title %}
+{% block content %}
+
+<style>
+
+    table,th,td,tr{
+        border: 1px solid;
+        text-align: center;
+        border-collapse: collapse;
+    }
+</style>
+<h1>List Books Using Forms</h1>
+
+<a href="{% url 'books.addbook2' %}"><strong>Add Book</strong></a>
+
+    <hr>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Edition</th>
+        <th>Price</th>
+        <th colspan="2">Action</th>
+
+    </tr>
+    {% for obj in books %}
+
+    <tr>
+        <td>{{obj.id}}</td>
+        <td>{{obj.title}}</td>
+        <td>{{obj.author}}</td>
+        <td>{{obj.edition}}</td>
+        <td>{{obj.price}}</td>
+        <td><a href="{% url 'books.editbook2' obj.id %}">Edit</a></td>
+        <td><a href="{% url 'books.deletebook2' obj.id %}">Delete</a></td>
+    </tr>
+    
+    {% endfor %} 
+    
+</table>
+
+{% comment %}
+{% for obj in books %}
+<strong>ID:</strong> {{obj.id}}, <strong>Title:</strong> {{obj.title}}. <strong>Author:</strong> {{obj.author}} <strong>Edition:</strong> {{obj.edition}} <strong>Price:</strong> {{obj.price}}
+<a href="{% url 'books.editbook2' obj.id %}">Edit book</a>
+ <a href="{% url 'books.deletebook2' obj.id %}">Delete book</a>
+ <hr>
+{% endfor %}
+<hr>
+{% endcomment %}
+
+
+{% endblock content %}

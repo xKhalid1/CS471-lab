@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from .models import Book, Student, Departement, Card, Address, Course, Student9
 from django.db.models import Q
 from django.db.models import Count, Min, Max, Sum, Avg
+from .forms import BookForm
+from django import forms
+
 
 def index(request):
     return render(request, "bookmodule/index.html")
@@ -108,6 +111,37 @@ def task7(request):
     return render(request, 'bookmodule/studentlist.html', {'books': mybooks})
 
 
+
+#lab 9
+def lab9task1(request):
+    mybook = Student9.objects.values('departement__name').annotate(student9_count=Count('id')).order_by('-student9_count')
+
+    return render(request, 'bookmodule/lab9task1.html', {'books': mybook})
+
+
+def lab9task2(request):
+    mybook = Student9.objects.values('Courses__title').annotate(student9_count=Count('id')).order_by('-student9_count')
+    
+    return render(request, 'bookmodule/lab9task2.html', {'book': mybook})
+
+
+def lab9task3(request):
+    mybook = Student9.objects.values('departement__name').annotate(student_id=Min('id'))
+
+    for item in mybook:
+        student = Student9.objects.get(id=item['student_id'])
+        item['student_name'] = student.name
+
+    return render(request, 'bookmodule/lab9task3.html', {'books': mybook})
+
+def lab9task4(request):
+
+    mybook = Departement.objects.annotate(student_count=Count('student9')).filter(student_count__gt=2).order_by('-student_count')
+    return render(request, 'bookmodule/lab9task4.html', {'books': mybook})
+
+
+
+#lab 10
 def listbooks(request):
     mybooks = Book.objects.order_by('id')
     return render(request, 'bookmodule/listbooks.html', {'books': mybooks})
@@ -121,8 +155,8 @@ def addbook(request):
         price = request.POST['price']
         edition = request.POST['edition']
         Book.objects.create(title = title, author = author, price = price, edition = edition)
+        return redirect('books.listbooks')
     return render(request, 'bookmodule/addbook.html')
-
 
 
 def editbook(request, id):
@@ -133,33 +167,43 @@ def editbook(request, id):
         mybook.price = request.POST['price']
         mybook.edition = request.POST['edition']
         mybook.save()
-        return redirect('book')
+        return redirect('books.listbooks')
     return render(request, 'bookmodule/editbook.html', {'books': mybook})
 
 def deletebook(request, id):
     mybook = get_object_or_404(Book, id=id)
     mybook.delete()
     return redirect('books.listbooks')
-    #return render(request, 'bookmodule/listbooks.html')
 
 
+#lab 10_2
 
-def lab9task1(request):
-    mybook = Student9.objects.values('departement__name').annotate(student9_count=Count('id')).order_by('-student9_count')
+def listbooks2(request):
+    mybooks = Book.objects.order_by('id')
+    return render(request, 'bookmodule/listbooks2.html', {'books': mybooks})
 
-    return render(request, 'bookmodule/depart.html', {'books': mybook})
+def addbook2(request): 
+    if request.method=='POST':
+        form = BookForm(request.POST)
+        if form.is_valid(): 
+            form.save()
+            return redirect('books.listbooks2')
+    else: form = BookForm() 
+    return render(request, "bookmodule/addbook2.html", {'form':form})
 
+def editbook2(request,id): 
+    obj = Book.objects.get(id = id) 
+    if request.method=='POST':
+        form = BookForm(request.POST, instance=obj)
+        if form.is_valid(): 
+            form.save() 
+            return redirect('books.listbooks2')
+    else: form = BookForm(instance=obj) 
+    return render(request, "bookmodule/editbook2.html",{'form':form})
 
-def lab9task2(request):
-    mybook = Student9.objects.values('Courses__title').annotate(student9_count=Count('id')).order_by('-student9_count')
-    
-    return render(request, 'bookmodule/courses.html', {'book': mybook})
-
-
-def lab9task3(request):
-    mybook = Student9.objects.values('departement__name').annotate(student_id=Min('id'))
-    return render(request, 'bookmodule/oldest.html', {'books': mybook})
-
-def lab9task4(request):
-
-    return render(request, 'bookmodule/editbook.html', {'books': mybook})
+def deletebook2(request,id):
+    obj = Book.objects.get(id = id) 
+    if request.method=='POST': 
+        obj.delete() 
+        return redirect('books.listbooks2')
+    return render(request, "bookmodule/deletebook2.html", {'obj':obj})
