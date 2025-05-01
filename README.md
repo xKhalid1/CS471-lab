@@ -15,3 +15,12 @@ How to:
 Link for Sqlite3 Database
 https://sqlitebrowser.org/dl/
 
+To view the database from Sqlite3 browser:
+
+1. Start DB Browser
+2. Open database
+3. Navigate to root directory of the django project
+4. Select db.sqlite3
+5. Now you can browse the data using DB Browser
+
+
